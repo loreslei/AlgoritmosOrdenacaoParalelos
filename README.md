@@ -10,6 +10,7 @@ CURSO: CIÊNCIA DA COMPUTAÇÃO
 ## INSERIR O TÍTULO AQUI
 
 **Autor 1:** BIANCA ORIÁ 
+
 **Autor 2:** LORENNA AGUIAR
 
 ---
