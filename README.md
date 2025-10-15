@@ -1,19 +1,22 @@
-| ![Logo da Universidade](inserir-caminho-da-imagem-aqui.png) | # UNIVERSIDADE DE FORTALEZA  
-|--------------------------------------------------------------|---------------------------------------------|
-|                                                              | ## CENTRO DE CIÊNCIAS TECNOLÓGICAS  
-|                                                              | ### CURSO: CIÊNCIA DA COMPUTAÇÃO |
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <img src="inserir-caminho-da-imagem-aqui.png" alt="Logo da Universidade" style="width: 120px; height: auto; margin-right: 20px;">
+  <div style="text-align: right;">
+    <h1>UNIVERSIDADE DE FORTALEZA</h1>
+    <h2>CENTRO DE CIÊNCIAS TECNOLÓGICAS</h2>
+    <h3>CURSO: CIÊNCIA DA COMPUTAÇÃO</h3>
+  </div>
+</div>
 
 ---
 
 ## INSERIR O TÍTULO AQUI
-*(Arial, 14; Negrito; Caixa alta; Centralizado)*
 
-**Autor 1:** Fulano de Tal  
-**Autor 2:** Fulano de Tal
+**Autor 1:** BIANCA ORIÁ 
+**Autor 2:** LORENNA AGUIAR
 
 ---
 
-**Palavras-chave:** Inserir até cinco palavras-chave, separadas por ponto.
+**Palavras-chave:** Palelização. Desempenho. Algoritmos de Ordenação
 
 ---
 
