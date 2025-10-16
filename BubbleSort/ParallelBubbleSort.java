@@ -1,103 +1,144 @@
 package BubbleSort;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ParallelBubbleSort {
 
-    private static class PontoDeEncontro {
-        private final int totalDeThreads;
-        private int threadsEsperando = 0;
+    /**
+     * Classe interna que representa cada thread de ordenação (nó 1..N-1)
+     */
+    private static class Worker implements Runnable {
+        private final int[] subArray;
 
-        public PontoDeEncontro(int totalDeThreads) {
-            this.totalDeThreads = totalDeThreads;
-        }
-
-        public synchronized void esperar() {
-            threadsEsperando++;
-
-            if (threadsEsperando < totalDeThreads) {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                threadsEsperando = 0;
-                notifyAll();
-            }
-        }
-    }
-
-
-    private static class TarefaDeOrdenacao implements Runnable {
-        private final int[] arr;
-        private final int inicio, fim, tamanhoTotal;
-        private final PontoDeEncontro pontoDeEncontro;
-
-        public TarefaDeOrdenacao(int[] arr, int inicio, int fim, int tamanhoTotal, PontoDeEncontro pontoDeEncontro) {
-            this.arr = arr;
-            this.inicio = inicio;
-            this.fim = fim;
-            this.tamanhoTotal = tamanhoTotal;
-            this.pontoDeEncontro = pontoDeEncontro;
+        public Worker(int[] subArray) {
+            this.subArray = subArray;
         }
 
         @Override
         public void run() {
-            for (int fase = 0; fase < tamanhoTotal; fase++) {
-                
-                int inicioDaFase = fase % 2;
-                int i_start = this.inicio;
-                if (i_start % 2 != inicioDaFase) {
-                    i_start++;
-                }
-                
-                for (int i = i_start; i < this.fim - 1; i += 2) {
+            bubbleSort(subArray);
+        }
+
+        private void bubbleSort(int[] arr) {
+            int n = arr.length;
+            boolean trocou;
+            do {
+                trocou = false;
+                for (int i = 0; i < n - 1; i++) {
                     if (arr[i] > arr[i + 1]) {
                         int temp = arr[i];
                         arr[i] = arr[i + 1];
                         arr[i + 1] = temp;
+                        trocou = true;
                     }
                 }
-                
-                pontoDeEncontro.esperar();
-            }
+                n--;
+            } while (trocou);
+        }
+
+        public int[] getSubArray() {
+            return subArray;
         }
     }
 
-    public void sort(int[] arr, int numThreads) {
-        if (numThreads <= 0 || arr == null || arr.length <= 1) {
-            return;
+    /**
+     * Método principal que executa a ordenação em paralelo.
+     * Pode ser chamado diretamente a partir da main, passando o número de threads desejado.
+     */
+    public static int[] sort(int[] arr, int numThreads) {
+        if (arr == null || arr.length == 0) {
+            return arr;
         }
 
-        int threadsReais = Math.min(numThreads, arr.length / 2);
-        if (threadsReais == 0) threadsReais = 1;
-
-        final PontoDeEncontro pontoDeEncontro = new PontoDeEncontro(threadsReais);
-        final List<Thread> threads = new ArrayList<>();
-        int tamanho_array = arr.length;
-
-        for (int i = 0; i < threadsReais; i++) {
-            int tamanho_bloco = (tamanho_array + threadsReais - 1) / threadsReais;
-            int inicio = i * tamanho_bloco;
-            int fim = Math.min(inicio + tamanho_bloco, tamanho_array);
-            
-            TarefaDeOrdenacao tarefa = new TarefaDeOrdenacao(arr, inicio, fim, tamanho_array, pontoDeEncontro);
-            threads.add(new Thread(tarefa));
+        if (numThreads <= 1) {
+            bubbleSort(arr);
+            return arr;
         }
 
-        for (Thread thread : threads) {
-            thread.start();
+        int tamanho = arr.length;
+        int tamanhoBloco = (int) Math.ceil((double) tamanho / numThreads);
+
+        List<Thread> threads = new ArrayList<>();
+        List<Worker> workers = new ArrayList<>();
+
+        // Divide o array entre as threads
+        for (int i = 0; i < numThreads; i++) {
+            int inicio = i * tamanhoBloco;
+            int fim = Math.min(inicio + tamanhoBloco, tamanho);
+            if (inicio >= fim) break;
+
+            int[] subArray = Arrays.copyOfRange(arr, inicio, fim);
+            Worker worker = new Worker(subArray);
+            Thread t = new Thread(worker);
+
+            workers.add(worker);
+            threads.add(t);
+            t.start();
         }
 
-     
-        for (Thread thread : threads) {
+        // Espera todas as threads finalizarem
+        for (Thread t : threads) {
             try {
-                thread.join();
+                t.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        // Nó 0 faz a fusão das partes ordenadas
+        return mergeSortedParts(workers);
+    }
+
+    /**
+     * Fusão final (simula a etapa no nó 0)
+     */
+    private static int[] mergeSortedParts(List<Worker> workers) {
+        int[] resultado = workers.get(0).getSubArray();
+
+        for (int i = 1; i < workers.size(); i++) {
+            resultado = merge(resultado, workers.get(i).getSubArray());
+        }
+
+        return resultado;
+    }
+
+    /**
+     * Merge de dois arrays ordenados
+     */
+    private static int[] merge(int[] a, int[] b) {
+        int[] result = new int[a.length + b.length];
+        int i = 0, j = 0, k = 0;
+
+        while (i < a.length && j < b.length) {
+            if (a[i] <= b[j]) result[k++] = a[i++];
+            else result[k++] = b[j++];
+        }
+
+        while (i < a.length) result[k++] = a[i++];
+        while (j < b.length) result[k++] = b[j++];
+
+        return result;
+    }
+
+    /**
+     * Versão simples do Bubble Sort (usada se houver apenas 1 thread)
+     */
+    private static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        boolean trocou;
+        do {
+            trocou = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    int temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    trocou = true;
+                }
+            }
+            n--;
+        } while (trocou);
     }
 }
