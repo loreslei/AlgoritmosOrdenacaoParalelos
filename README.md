@@ -1,5 +1,4 @@
-<img src="https://github.com/loreslei/AlgoritmosOrdenacaoParalelos/issues/5" alt="Logo Unifor" width="100" align="left">
-
+<img height="100" alt="Logo Unifor" width="100" align="left" src="https://github.com/user-attachments/assets/e539a346-8d74-4cf0-a52a-bc5d786202b9" />
 **UNIVERSIDADE DE FORTALEZA**<br>
 CENTRO DE CIÊNCIAS TECNOLÓGICAS<br>
 CURSO: CIÊNCIA DA COMPUTAÇÃO
