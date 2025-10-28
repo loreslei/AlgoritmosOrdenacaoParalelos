@@ -2,6 +2,10 @@ package Utilitarios;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class GeradorGrafico extends JPanel {
 
@@ -29,7 +33,7 @@ public class GeradorGrafico extends JPanel {
         int largura = getWidth() - 2 * margem;
         int altura = getHeight() - 2 * margem;
 
-        // Desenha eixos
+        // Eixos
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
         g2.drawLine(margem, getHeight() - margem, margem + largura, getHeight() - margem);
@@ -43,7 +47,7 @@ public class GeradorGrafico extends JPanel {
         // Escala
         double maxTempo = Math.max(max(temposSerial), max(temposParalelo));
 
-        // Eixos com valores
+        // Valores nos eixos
         g2.setFont(new Font("SansSerif", Font.PLAIN, 12));
         g2.setColor(Color.DARK_GRAY);
 
@@ -62,8 +66,6 @@ public class GeradorGrafico extends JPanel {
             g2.drawLine(margem - 5, y, margem + 5, y);
             g2.drawString(String.format("%.2f", valor), margem - 55, y + 5);
         }
-
-        
 
         // Linhas
         g2.setStroke(new BasicStroke(2.5f));
@@ -122,11 +124,19 @@ public class GeradorGrafico extends JPanel {
         frame.setVisible(true);
     }
 
-    // Exemplo de uso:
-    public static void main(String[] args) {
-        int[] tamanhos = {1000, 5000, 10000, 20000};
-        double[] serial = {0.12, 0.75, 2.9, 11.8};
-        double[] paralelo = {0.08, 0.41, 1.9, 7.6};
-        exibirGrafico("BubbleSort", tamanhos, serial, paralelo);
+    // Novo método: salva como PNG
+    public static void salvarGrafico(String algoritmo, int[] tamanhos, double[] temposSerial, double[] temposParalelo, String nomeArquivo) {
+        GeradorGrafico panel = new GeradorGrafico(algoritmo, tamanhos, temposSerial, temposParalelo);
+        panel.setSize(900, 600);
+        BufferedImage imagem = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = imagem.createGraphics();
+        panel.paint(g2d);
+        g2d.dispose();
+        try {
+            ImageIO.write(imagem, "png", new File(nomeArquivo));
+            System.out.println("Gráfico salvo: " + nomeArquivo);
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar gráfico: " + e.getMessage());
+        }
     }
 }

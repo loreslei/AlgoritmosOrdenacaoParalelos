@@ -16,7 +16,7 @@ public class Main {
 
         for(int j = 0; j < qtdsThreads.length; j++) {
             int numeroThreads = qtdsThreads[j];
-            for (int i = 1; i <= 5; i++) {
+            for (int i = 1; i <= 4; i++) {
                 String caminho = "BaseDados/base" + i + ".txt";
 
                 int[] arr_seq = lerInteiros(caminho);
