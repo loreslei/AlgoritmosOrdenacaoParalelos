@@ -56,7 +56,11 @@ Este trabalho reforça a relevância da computação paralela no contexto atual,
 
 ## Referências
 
-cu
+ORACLE. *Java Platform, Standard Edition Documentation.* Disponível em: https://docs.oracle.com/javase/.
+
+DEV MEDIA. Threads: paralelizando tarefas com os diferentes recursos do Java. Disponível em: https://www.devmedia.com.br/threads-paralelizando-tarefas-com-os-diferentes-recursos-do-java/34309. Acesso em: 28 out. 2025.
+
+NORÕES, Izequiel. Aula 11 – Computação Paralela e Concorrente. Fortaleza: Universidade de Fortaleza – UNIFOR, 2024. Material de aula (Sistemas Operacionais).
 
 
 ---
