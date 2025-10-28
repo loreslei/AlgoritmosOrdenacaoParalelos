@@ -115,6 +115,33 @@ Eu odeio esse trabalho!
 | 10 | 500.000 | 0,01376 | 0,00617 | 0,0076 |
 | 10 | 1.000.000 | 9,62271 | 3,74886 | 5,8738 |
 
+
+
+IMAGENS
+Quick
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/2832d39c-7f82-4a6a-ac9e-0f219beb4d50" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/0782656c-d32c-46aa-afb2-55d6a26d2ac3" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/38557e8f-4400-408b-9392-3908ecde7acf" />
+
+Merge
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/66c75e20-f4ba-4b27-be0b-2b25fde5a0a6" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/b83473c0-1604-4e41-bb99-b2a3fd78348b" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/84f8437f-29b1-4d81-9a3b-d15e3c18ec32" />
+
+
+Counting
+
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/9c3355e6-8abe-409f-96a0-c88010f31468" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/fd7a0b80-4191-4923-b766-744a9acd852c" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/a4a30a6c-afef-404b-bbdf-50938d7fcc51" />
+
+Bubble
+
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/c9930d11-d96e-4189-a263-b467438b2d13" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/69deb5f4-ef94-4511-8565-ff67ef1f834b" />
+<img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/bb68e0b5-94c2-4024-8e6a-d764575b3531" />
+
+
 ---
 
 ## Conclusão
