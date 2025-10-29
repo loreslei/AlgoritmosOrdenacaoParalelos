@@ -1,4 +1,4 @@
-<img height="100" alt="Logo Unifor" width="100" align="left" src="https://github.com/user-attachments/assets/e539a346-8d74-4cf0-a52a-bc5d786202b9" />
+<img height="100" alt="Logo Unifor" width="100" align="left" src="https://github.com/user-attachments/assets/84553f6b-021b-489d-ad7d-332fa0196d7b" />
 
 **UNIVERSIDADE DE FORTALEZA**<br>
 CENTRO DE CIÊNCIAS TECNOLÓGICAS<br>
