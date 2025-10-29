@@ -53,7 +53,8 @@ public class GeradorGrafico extends JPanel {
 
         // Eixo X
         for (int i = 0; i < tamanhos.length; i++) {
-            int x = margem + (int) ((double) i / (tamanhos.length - 1) * largura);
+            double escalaX = 0.5; // diminui a escala do eixo X
+            int x = margem + (int) ((double) i / (tamanhos.length - 1) * largura * escalaX);
             int y = getHeight() - margem;
             g2.drawLine(x, y - 5, x, y + 5);
             g2.drawString(String.valueOf(tamanhos[i]), x - 10, y + 20);
